@@ -6,6 +6,7 @@ class_name MoveController extends Node
 
 var speed_multiplier: float = 10000
 var torque_multiplier: float = 10000
+var torque_direction: float = 1
 
 func update(direction: Vector2) -> void:
 	if rigid_body == null:
@@ -14,4 +15,6 @@ func update(direction: Vector2) -> void:
 	rigid_body.apply_central_force(forward_direction * direction.y * speed * speed_multiplier * rigid_body.mass)
 	if rigid_body.linear_velocity.length() >= 200:
 		# Consider scaling torque to current velocity instead of this value
-		rigid_body.apply_torque(direction.x * torque * torque_multiplier * rigid_body.mass)
+		if direction.y != 0:
+			torque_direction = direction.x if direction.y < 0 else -direction.x
+		rigid_body.apply_torque(torque_direction * torque * torque_multiplier * rigid_body.mass)
