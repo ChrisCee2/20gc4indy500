@@ -18,7 +18,7 @@ func get_direction() -> Vector2:
 		direction += Vector2.LEFT
 	if input_map["right"]:
 		direction += Vector2.RIGHT
-	return direction
+	return direction.normalized()
 
 
 # Run on unhandled_input
