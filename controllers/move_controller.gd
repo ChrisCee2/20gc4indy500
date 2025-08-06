@@ -1,16 +1,17 @@
 class_name MoveController extends Node
 
 @export var rigid_body: RigidBody2D
-@export var max_acceleration: float = 1.0
+@export var max_acceleration: float = 0.8
 @export var torque: float = 5.0
-@export_range(0, 1) var acceleration_speed: float = 0.1 # How fast it accelerates, using lerp weirdly
-@export_range(0, 1) var deceleration_speed: float = 0.1
+@export_range(0, 1) var acceleration_speed: float = 0.05 # How fast it accelerates, using lerp weirdly
+@export_range(0, 1) var deceleration_speed: float = 0.02
 
 var acceleration_multiplier: float = 10000
 var torque_multiplier: float = 10000
 var torque_direction: float = 1
 
 var current_acceleration: float = 0
+
 
 func update(direction: Vector2) -> void:
 	if rigid_body == null:
@@ -34,15 +35,15 @@ func update(direction: Vector2) -> void:
 
 
 func get_current_acceleration(direction_y: float) -> float:
-	var desired_acceleration: float = 0.0
-	if direction_y != 0:
-		desired_acceleration = max_acceleration if direction_y > 0 else -max_acceleration
+	if direction_y == 0:
+		if current_acceleration > 0:
+			return max(current_acceleration - deceleration_speed, 0.0)
+		elif current_acceleration < 0:
+			return min(current_acceleration + deceleration_speed, 0.0)
+		return 0.0
+	if direction_y > 0:
+		return min(current_acceleration + acceleration_speed, max_acceleration)
+	elif direction_y < 0:
+		return max(current_acceleration - acceleration_speed, -max_acceleration)
 	
-	var lerp_speed: float = deceleration_speed if desired_acceleration == 0.0 else acceleration_speed
-	
-	return lerpf(
-		current_acceleration, 
-		desired_acceleration, 
-		lerp_speed
-	)
-	
+	return 0.0
