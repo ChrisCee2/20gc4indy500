@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7w7th8hmqmmy"]
+
+[ext_resource type="PackedScene" uid="uid://dhqthycfevgqo" path="res://controllers/input_controller.tscn" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://dkijcxyh5de2g" path="res://player.gd" id="1_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://c8ucqao0nfxhn" path="res://controllers/move_controller.tscn" id="2_onrkg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
+size = Vector2(64, 64)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4flbx"]
+
+[node name="Player" type="RigidBody2D"]
+linear_damp_mode = 1
+linear_damp = 10.0
+angular_damp_mode = 1
+angular_damp = 10.0
+script = ExtResource("1_i3pqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sh265")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(64, 64)
+texture = SubResource("CanvasTexture_4flbx")
+
+[node name="InputController" parent="." instance=ExtResource("1_4flbx")]
+
+[node name="MoveController" parent="." node_paths=PackedStringArray("rigid_body") instance=ExtResource("2_onrkg")]
+rigid_body = NodePath("..")
