@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cygvd08neps6x"]
+
+[ext_resource type="PackedScene" uid="uid://c7w7th8hmqmmy" path="res://player.tscn" id="1_o4y1c"]
+[ext_resource type="Script" uid="uid://dnpa3x5jcieyx" path="res://multiplayer.gd" id="1_wktud"]
+
+[node name="Multiplayer" type="Node2D"]
+script = ExtResource("1_wktud")
+
+[node name="Players" type="Node" parent="."]
+
+[node name="Player" parent="Players" instance=ExtResource("1_o4y1c")]
+
+[node name="Player2" parent="Players" instance=ExtResource("1_o4y1c")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
