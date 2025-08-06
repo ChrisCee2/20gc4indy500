@@ -31,8 +31,9 @@ func update_input(event: InputEvent, device: int) -> void:
 
 # Run on unhandled_input
 func update_keyboard_input(event: InputEvent, device: int, keys: Dictionary) -> void:
-	if event is InputEventKey and !keys.get(event.as_text_keycode(), false):
-		return
+	if keys.size() != 0:
+		if event is InputEventKey and !keys.get(event.as_text_keycode(), false):
+			return
 	for action in input_map:
 		if event.is_action(action):
 			if event.is_pressed():
