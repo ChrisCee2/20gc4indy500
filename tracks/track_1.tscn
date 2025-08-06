@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg08mn46hx5f0"]
+
+[sub_resource type="Curve2D" id="Curve2D_c2oby"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -640, -256, 0, 0, 256, 0, 640, -256, 0, 0, 0, 0, 896, 0, 256, 0, 0, 0, 640, 256, 0, 0, -256, 0, -640, 256, 0, 0, 0, 0, -896, 0, -256, 0, 0, 0, -640, -256)
+}
+point_count = 7
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_c2oby"]
+
+[node name="Track1" type="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_c2oby")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Path2D"]
+build_mode = 1
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-640, -256)
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
+scale = Vector2(64, 64)
+texture = SubResource("CanvasTexture_c2oby")
