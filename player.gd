@@ -5,6 +5,10 @@ class_name Player extends RigidBody2D
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
+	input_controller.update_keyboard_input(event)
+
+
+func _input(event: InputEvent) -> void:
 	input_controller.update_input(event)
 
 
