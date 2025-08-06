@@ -1,6 +1,9 @@
 class_name InputController extends Node
 
-@export_range(0, 1) var controller_deadzone: float = 0.2
+@export_range(0, 1) var controller_dead_zone: float = 0.2
+
+var retro_bit_controller_handler: RetroBitControllerHandler = RetroBitControllerHandler.new()
+var ps3_controller_handler: PS3ControllerHandler = PS3ControllerHandler.new()
 
 var input_map: Dictionary[String, float] = {
 	"up": 0.0,
@@ -20,37 +23,17 @@ func get_direction() -> Vector2:
 
 
 # Run on input
-func update_input(event: InputEvent) -> void:
-	for action in input_map:
-		if event.is_action(action):
-			if event is InputEventJoypadMotion:
-				var action_strength: float = abs(event.axis_value)
-				if action == "left":
-					input_map["left"] = 0.0
-					input_map["right"] = 0.0
-					if action_strength <= controller_deadzone:
-						return
-					elif event.axis_value >= 0:
-						input_map["right"] = action_strength
-					else:
-						input_map["left"] = action_strength
-				elif action == "up":
-					input_map["up"] = 0.0
-					input_map["down"] = 0.0
-					if action_strength <= controller_deadzone:
-						return
-					elif event.axis_value >= 0:
-						input_map["down"] = action_strength
-					else:
-						input_map["up"] = action_strength
-				else:
-					input_map[action] = action_strength
-			else:
-				input_map[action] = 1.0
-			return
+func update_input(event: InputEvent, device: int) -> void:
+	if event.device != device:
+		return
+	var device_name: String = Input.get_joy_name(device)
+	ps3_controller_handler.update_input(input_map, event, device, controller_dead_zone)
+
 
 # Run on unhandled_input
-func update_keyboard_input(event: InputEvent) -> void:
+func update_keyboard_input(event: InputEvent, device: int) -> void:
+	if event.device != device:
+		return
 	for action in input_map:
 		if event.is_action(action):
 			if event.is_pressed():
