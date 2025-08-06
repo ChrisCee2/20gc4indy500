@@ -26,13 +26,12 @@ func get_direction() -> Vector2:
 func update_input(event: InputEvent, device: int) -> void:
 	if event.device != device:
 		return
-	var device_name: String = Input.get_joy_name(device)
 	ps3_controller_handler.update_input(input_map, event, device, controller_dead_zone)
 
 
 # Run on unhandled_input
-func update_keyboard_input(event: InputEvent, device: int) -> void:
-	if event.device != device:
+func update_keyboard_input(event: InputEvent, device: int, keys: Dictionary) -> void:
+	if event is InputEventKey and !keys.get(event.as_text_keycode(), false):
 		return
 	for action in input_map:
 		if event.is_action(action):
