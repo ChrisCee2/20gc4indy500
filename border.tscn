@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvx6q6jrrb2hb"]
+
+[ext_resource type="Script" uid="uid://dl48kui7xlc56" path="res://border.gd" id="1_ujjr2"]
+
+[node name="Border" type="StaticBody2D"]
+script = ExtResource("1_ujjr2")

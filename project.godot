@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="20gc4indy500"
-run/main_scene="uid://cygvd08neps6x"
+run/main_scene="uid://exnt8cbqpt5a"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
