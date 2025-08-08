@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1f7dwnnhrutk"]
+
+[ext_resource type="Script" uid="uid://cntv8yvv31nkc" path="res://finish_line.gd" id="1_6tsjx"]
+
+[node name="FinishLine" type="Area2D"]
+z_index = -100
+script = ExtResource("1_6tsjx")
