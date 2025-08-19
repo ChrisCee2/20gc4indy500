@@ -10,8 +10,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		body.passed_finish_line = false
 		if body.lap_started:
-			body.laps_completed += 1
-			body.lap_started = false
+			body.lap()
 
 
 func _on_body_exited(body: Node2D) -> void:
