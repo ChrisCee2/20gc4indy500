@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://exnt8cbqpt5a"]
+[gd_scene load_steps=4 format=3 uid="uid://exnt8cbqpt5a"]
 
 [ext_resource type="PackedScene" uid="uid://dg08mn46hx5f0" path="res://tracks/track_1.tscn" id="1_p6prp"]
 [ext_resource type="PackedScene" uid="uid://c7w7th8hmqmmy" path="res://player.tscn" id="2_40wcd"]
+[ext_resource type="PackedScene" uid="uid://cfe2qi0ae512k" path="res://time_mode.tscn" id="3_40wcd"]
 
 [node name="Stage1" type="Node2D"]
 
@@ -14,3 +15,34 @@ players = NodePath("../Players")
 [node name="Players" type="Node" parent="."]
 
 [node name="Player" parent="Players" instance=ExtResource("2_40wcd")]
+
+[node name="Control2" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+
+[node name="StartTime" type="Label" parent="Control2"]
+z_index = 100
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -146.0
+offset_top = -349.0
+offset_right = 146.0
+offset_bottom = 349.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 448
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeMode" parent="." node_paths=PackedStringArray("players", "start_timer_label", "track_time_label") instance=ExtResource("3_40wcd")]
+players = NodePath("../Players")
+start_timer_label = NodePath("../Control2/StartTime")
+track_time_label = NodePath("../Control2/StartTime")
