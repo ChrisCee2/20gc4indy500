@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dg08mn46hx5f0"]
+[gd_scene load_steps=10 format=3 uid="uid://dg08mn46hx5f0"]
 
 [ext_resource type="Script" uid="uid://18co37d0fg7c" path="res://tracks/track.gd" id="1_iwm28"]
 [ext_resource type="PackedScene" uid="uid://dvx6q6jrrb2hb" path="res://border.tscn" id="2_jhe20"]
 [ext_resource type="PackedScene" uid="uid://d1f7dwnnhrutk" path="res://finish_line.tscn" id="3_btncu"]
+[ext_resource type="PackedScene" uid="uid://d3qag8r5tmx4d" path="res://start_line.tscn" id="4_cejyx"]
 
 [sub_resource type="Curve2D" id="Curve2D_jhe20"]
 _data = {
@@ -17,9 +18,12 @@ _data = {
 point_count = 7
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhe20"]
-size = Vector2(64, 448)
+size = Vector2(128, 448)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_jhe20"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xv2qj"]
+size = Vector2(128, 448)
 
 [node name="Track1" type="Node" node_paths=PackedStringArray("spawn")]
 script = ExtResource("1_iwm28")
@@ -51,7 +55,7 @@ curve = SubResource("Curve2D_c2oby")
 [node name="Line2D" type="Line2D" parent="OuterBorder"]
 
 [node name="Spawn" type="Node2D" parent="."]
-position = Vector2(-128, -768)
+position = Vector2(128, -768)
 rotation = -1.5708
 
 [node name="FinishLine" parent="." instance=ExtResource("3_btncu")]
@@ -62,5 +66,13 @@ shape = SubResource("RectangleShape2D_jhe20")
 
 [node name="Sprite2D" type="Sprite2D" parent="FinishLine/CollisionShape2D"]
 modulate = Color(0, 0, 0, 1)
-scale = Vector2(64, 448)
+scale = Vector2(128, 448)
 texture = SubResource("CanvasTexture_jhe20")
+
+[node name="StartLine" parent="." instance=ExtResource("4_cejyx")]
+position = Vector2(-128, -544)
+scale = Vector2(64, 448)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartLine"]
+scale = Vector2(0.015625, 0.00223214)
+shape = SubResource("RectangleShape2D_xv2qj")

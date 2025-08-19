@@ -8,9 +8,13 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		player.on_enter_finish_line()
+		body.passed_finish_line = false
+		if body.lap_started:
+			body.laps_completed += 1
+			body.lap_started = false
+			print("LAPPED")
 
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
-		player.on_exit_finish_line()
+		body.passed_finish_line = true

@@ -6,6 +6,9 @@ class_name Player extends RigidBody2D
 
 var player_keys: Dictionary = {}
 var device: int = -1
+var passed_finish_line: bool = true
+var lap_started: bool = false
+var laps_completed: int = 0
 
 
 func set_keys(keys: Dictionary) -> void:

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3qag8r5tmx4d"]
+
+[ext_resource type="Script" uid="uid://buqy501iemjmh" path="res://start_line.gd" id="1_ismhg"]
+
+[node name="StartLine" type="Area2D"]
+script = ExtResource("1_ismhg")
