@@ -12,7 +12,6 @@ func _on_body_entered(body: Node2D) -> void:
 		if body.lap_started:
 			body.laps_completed += 1
 			body.lap_started = false
-			print("LAPPED")
 
 
 func _on_body_exited(body: Node2D) -> void:
