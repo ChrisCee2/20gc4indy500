@@ -16,12 +16,19 @@ players = NodePath("../Players")
 
 [node name="Player" parent="Players" instance=ExtResource("2_40wcd")]
 
-[node name="Control2" type="Control" parent="."]
+[node name="TimeMode" parent="." node_paths=PackedStringArray("players", "start_timer_label", "track_time_label", "end_text_label", "lap_label") instance=ExtResource("3_40wcd")]
+players = NodePath("../Players")
+start_timer_label = NodePath("../Control/TimeLabel")
+track_time_label = NodePath("../Control/TimeLabel")
+end_text_label = NodePath("../Control2/HeaderLabel")
+lap_label = NodePath("../Control2/HeaderLabel")
+
+[node name="Control" type="Control" parent="."]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
 
-[node name="StartTime" type="Label" parent="Control2"]
+[node name="TimeLabel" type="Label" parent="Control"]
 z_index = 100
 layout_mode = 1
 anchors_preset = 8
@@ -42,7 +49,31 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TimeMode" parent="." node_paths=PackedStringArray("players", "start_timer_label", "track_time_label") instance=ExtResource("3_40wcd")]
-players = NodePath("../Players")
-start_timer_label = NodePath("../Control2/StartTime")
-track_time_label = NodePath("../Control2/StartTime")
+[node name="Control2" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = -1000.0
+offset_bottom = -1000.0
+grow_horizontal = 2
+
+[node name="HeaderLabel" type="Label" parent="Control2"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1240.0
+offset_top = -174.5
+offset_right = 1240.0
+offset_bottom = 174.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 256
+text = "Press space to leave"
+horizontal_alignment = 1
+vertical_alignment = 1

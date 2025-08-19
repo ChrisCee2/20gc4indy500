@@ -8,6 +8,8 @@ class_name TimeMode extends Node
 @export var players: Node
 @export var start_timer_label: Label
 @export var track_time_label: Label
+@export var end_text_label: Label
+@export var lap_label: Label
 @export_group("Settings")
 @export var laps: int = 2
 
@@ -18,6 +20,8 @@ var is_started: bool = false
 var is_starting: bool = false
 var is_finished: bool = false
 var finish_time: int = 0
+var lap_text: String = "Lap: %d/%d"
+var end_text: String = "Press space to leave"
 
 
 func _ready() -> void:
@@ -27,9 +31,10 @@ func _ready() -> void:
 	for object in players.get_children():
 		if object is Player:
 			object.disabled = true
-			object.lapped.connect(check_win_condition.bind(object))
+			object.lapped.connect(on_lap.bind(object))
 	
 	start_timer_label.hide()
+	end_text_label.hide()
 	
 	init()
 
@@ -47,6 +52,7 @@ func _process(delta: float) -> void:
 func start() -> void:
 	is_starting = false
 	start_timer_label.hide()
+	end_text_label.hide()
 	track_time_label.show()
 	start_time = Time.get_ticks_msec()
 	is_started = true
@@ -54,6 +60,9 @@ func start() -> void:
 	for object in players.get_children():
 		if object is Player:
 			object.disabled = false
+	
+	lap_label.show()
+	lap_label.text = lap_text % [1, laps]
 
 
 func init() -> void:
@@ -66,11 +75,18 @@ func get_current_time() -> int:
 	return Time.get_ticks_msec() - start_time
 
 
-func check_win_condition(player: Player) -> void:
+func finish() -> void:
+	end_text_label.text = end_text
+	end_text_label.show()
+	finish_time = get_current_time()
+	is_finished = true
+
+
+func on_lap(player: Player) -> void:
 	if not is_finished and player.laps_completed >= laps:
-		finish_time = get_current_time()
-		is_finished = true
-		# Show press space bar to go back to main menu
+		finish()
+	else:
+		lap_label.text = lap_text % [player.laps_completed + 1, laps]
 
 
 func get_formatted_time(ms: int) -> String:
