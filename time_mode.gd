@@ -67,7 +67,7 @@ func get_current_time() -> int:
 
 
 func check_win_condition(player: Player) -> void:
-	if player.laps_completed >= laps:
+	if not is_finished and player.laps_completed >= laps:
 		finish_time = get_current_time()
 		is_finished = true
 		# Show press space bar to go back to main menu
