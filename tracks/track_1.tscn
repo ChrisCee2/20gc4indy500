@@ -29,6 +29,21 @@ size = Vector2(128, 192)
 script = ExtResource("1_iwm28")
 spawn = NodePath("Spawn")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1000
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2112.0
+offset_top = -1575.0
+offset_right = 888.0
+offset_bottom = 1425.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="OuterBorder" parent="." node_paths=PackedStringArray("collision_polygon", "path", "line") instance=ExtResource("2_jhe20")]
 collision_polygon = NodePath("CollisionPolygon2D")
 path = NodePath("Path2D")
@@ -65,7 +80,6 @@ position = Vector2(0, -224)
 shape = SubResource("RectangleShape2D_jhe20")
 
 [node name="Sprite2D" type="Sprite2D" parent="FinishLine/CollisionShape2D"]
-modulate = Color(0, 0, 0, 1)
 scale = Vector2(128, 192)
 texture = SubResource("CanvasTexture_jhe20")
 
