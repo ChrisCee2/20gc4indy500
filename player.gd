@@ -39,5 +39,6 @@ func _physics_process(delta: float) -> void:
 
 
 func lap() -> void:
+	lap_started = false
 	laps_completed += 1
 	emit_signal("lapped")
