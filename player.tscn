@@ -5,8 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dissuvs6jspv6" path="res://assets/dog.png" id="2_hqtel"]
 [ext_resource type="PackedScene" uid="uid://c8ucqao0nfxhn" path="res://controllers/move_controller.tscn" id="2_onrkg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
-size = Vector2(48, 64)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hqtel"]
+radius = 16.0
+height = 64.0
 
 [sub_resource type="Animation" id="Animation_hqtel"]
 resource_name = "run"
@@ -54,7 +55,7 @@ angular_damp = 10.0
 script = ExtResource("1_i3pqv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_sh265")
+shape = SubResource("CapsuleShape2D_hqtel")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
