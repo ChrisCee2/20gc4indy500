@@ -83,7 +83,10 @@ func finish() -> void:
 
 
 func on_lap(player: Player) -> void:
-	if not is_finished and player.laps_completed >= laps:
+	if is_finished:
+		return
+	
+	if player.laps_completed >= laps:
 		finish()
 	else:
 		lap_label.text = lap_text % [player.laps_completed + 1, laps]
