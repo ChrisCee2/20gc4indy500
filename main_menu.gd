@@ -1,21 +1,21 @@
 class_name MainMenu extends Control
 
-@onready var play_button: Button = $GridContainer/PlayButton
+@onready var time_mode_button: Button = $GridContainer/TimeModeButton
 @onready var exit_button: Button = $GridContainer/ExitButton
 
 var select_sfx: AudioStream = preload("res://SFX/MainSelectSFX.wav")
 var hover_sfx: AudioStream = preload("res://SFX/MainHoverSFX.wav")
 
 func _ready() -> void:
-	play_button.pressed.connect(start_game)
-	play_button.mouse_entered.connect(_on_enter)
+	time_mode_button.pressed.connect(go_to_stage_select)
+	time_mode_button.mouse_entered.connect(_on_enter)
 	
 	exit_button.pressed.connect(exit_game)
 	exit_button.mouse_entered.connect(_on_enter)
 
-func start_game() -> void:
+func go_to_stage_select() -> void:
 	AudioManager.play_audio(select_sfx)
-	var game_scene = preload("res://stages/stage_1.tscn").instantiate()
+	var game_scene = load("res://stage_menu.tscn").instantiate()
 	get_tree().root.add_child(game_scene)
 	get_tree().current_scene = game_scene
 	queue_free()
