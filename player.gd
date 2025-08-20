@@ -6,6 +6,7 @@ signal lapped
 
 @onready var input_controller: InputController = $InputController
 @onready var move_controller: MoveController = $MoveController
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 var player_keys: Dictionary = {}
@@ -14,6 +15,12 @@ var passed_finish_line: bool = true
 var lap_started: bool = false
 var laps_completed: int = 0
 var disabled = false
+var max_animation_speed: float = 8.0
+var animation_speed_scale: float = .01
+
+
+func _ready() -> void:
+	animation_player.play("run")
 
 
 func set_keys(keys: Dictionary) -> void:
@@ -42,3 +49,8 @@ func lap() -> void:
 	lap_started = false
 	laps_completed += 1
 	emit_signal("lapped")
+
+
+func _process(delta: float) -> void:
+	var speed: float = maxf(linear_velocity.length(), angular_velocity) * animation_speed_scale
+	animation_player.speed_scale = minf(speed, max_animation_speed)
