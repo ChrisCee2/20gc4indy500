@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dvx6q6jrrb2hb" path="res://border.tscn" id="2_jhe20"]
 [ext_resource type="PackedScene" uid="uid://d1f7dwnnhrutk" path="res://finish_line.tscn" id="3_btncu"]
 [ext_resource type="PackedScene" uid="uid://d3qag8r5tmx4d" path="res://start_line.tscn" id="4_cejyx"]
+[ext_resource type="Texture2D" uid="uid://dp6n84sdikk8y" path="res://assets/finish_line_checker.png" id="4_xv2qj"]
 
 [sub_resource type="Curve2D" id="Curve2D_jhe20"]
 _data = {
@@ -19,8 +20,6 @@ point_count = 7
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhe20"]
 size = Vector2(128, 192)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_jhe20"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cejyx"]
 size = Vector2(128, 192)
@@ -79,9 +78,14 @@ position = Vector2(0, -224)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FinishLine"]
 shape = SubResource("RectangleShape2D_jhe20")
 
-[node name="Sprite2D" type="Sprite2D" parent="FinishLine/CollisionShape2D"]
-scale = Vector2(128, 192)
-texture = SubResource("CanvasTexture_jhe20")
+[node name="Sprite2D" type="Sprite2D" parent="FinishLine"]
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("4_xv2qj")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 192)
+
+[node name="Node2D" type="Node2D" parent="FinishLine"]
 
 [node name="StartLine" parent="." instance=ExtResource("4_cejyx")]
 position = Vector2(-128, -224)
