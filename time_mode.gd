@@ -6,6 +6,7 @@ class_name TimeMode extends Node
 
 @export_group("Required Nodes")
 @export var players: Node
+@export var track: Track
 @export var start_timer_label: Label
 @export var track_time_label: Label
 @export var end_text_label: Label
@@ -22,21 +23,24 @@ var is_finished: bool = false
 var finish_time: int = 0
 var lap_text: String = "Lap: %d/%d"
 var end_text: String = "Press space to leave"
+var player = preload("res://player.tscn")
+
+
+func init_players() -> void:
+	for object in players.get_children():
+		if object is Player:
+			object.disabled = true
+			object.lapped.connect(on_lap.bind(object))
 
 
 func _ready() -> void:
 	start_timer.one_shot = true
 	start_timer.timeout.connect(start)
 	
-	for object in players.get_children():
-		if object is Player:
-			object.disabled = true
-			object.lapped.connect(on_lap.bind(object))
+	init_players()
 	
 	start_timer_label.hide()
 	end_text_label.hide()
-	
-	init()
 
 
 func _process(delta: float) -> void:
@@ -65,7 +69,15 @@ func start() -> void:
 	lap_label.text = lap_text % [1, laps]
 
 
-func init() -> void:
+func init(player_count: int) -> void:
+	for i in range(player_count):
+		print(i)
+		print(player_count)
+		var new_player: Player = player.instantiate()
+		players.add_child(new_player)
+	
+	init_players()
+	track.spawn_players(players)
 	is_starting = true
 	start_timer_label.show()
 	start_timer.start(time_to_start)
