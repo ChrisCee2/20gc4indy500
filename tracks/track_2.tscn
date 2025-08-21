@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3 uid="uid://g7ejlj34uwmp"]
+
+[ext_resource type="Script" uid="uid://18co37d0fg7c" path="res://tracks/track.gd" id="1_5ywlu"]
+[ext_resource type="PackedScene" uid="uid://dvx6q6jrrb2hb" path="res://border.tscn" id="2_hne8a"]
+[ext_resource type="PackedScene" uid="uid://d1f7dwnnhrutk" path="res://finish_line.tscn" id="3_w6y04"]
+[ext_resource type="Texture2D" uid="uid://dp6n84sdikk8y" path="res://assets/finish_line_checker.png" id="4_7o723"]
+[ext_resource type="PackedScene" uid="uid://d3qag8r5tmx4d" path="res://start_line.tscn" id="5_e87hg"]
+
+[sub_resource type="Curve2D" id="Curve2D_jhe20"]
+_data = {
+"points": PackedVector2Array(-43.503, 31.3452, 43.503, -31.3452, 535, -473, -101.288, -45.179, 101.288, 45.179, 788, -467, 0, -119.178, 0, 119.178, 842, 13, 258.801, -20.9366, -258.801, 20.9366, 395, 327, 83.4307, -0.0732059, -83.4307, 0.0732059, -389, 344, 18.6502, 221.24, -18.6502, -221.24, -909, 197, 120.199, 51.3774, -120.199, -51.3774, -556, -51, -209.815, 209.21, 209.815, -209.21, -880, -380, 0, 0, 0, 0, -348, -417, -96.1837, -97.7499, 96.1837, 97.7499, -142, -258, -226.76, -15.9441, 226.76, 15.9441, -75, -503, -7.42658, -97.1561, 7.42658, 97.1561, 274, -294, 0, 0, 0, 0, 535, -473)
+}
+point_count = 13
+
+[sub_resource type="Curve2D" id="Curve2D_5ywlu"]
+_data = {
+"points": PackedVector2Array(-89.5265, 89.2223, 89.5265, -89.2223, 386, -90, -95.6, 24.2, 95.6, -24.2, 596, -255, 0, 0, 0, 0, 641, -51, 154.804, -25.6303, -154.804, 25.6303, 442, 132, 79.8876, 8.7846, -79.8876, -8.7846, -147, 153, 10.3662, 72.9199, -10.3662, -72.9199, -522, 180, 138.044, 110.305, -138.044, -110.305, -202, -43, -140.505, 25.8874, 140.505, -25.8874, -625, -312, 0, 0, 0, 0, -218.265, -121, -94.9563, -18.892, 94.9563, 18.892, -4, -21, -46.0606, 124.009, 46.0606, -124.009, 58, -279, 0, 0, 0, 0, 193, -102, -139.15, 83.49, 139.15, -83.49, 386, -90)
+}
+point_count = 13
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhe20"]
+size = Vector2(128, 192)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cejyx"]
+size = Vector2(128, 192)
+
+[node name="Track2" type="Node" node_paths=PackedStringArray("spawn")]
+script = ExtResource("1_5ywlu")
+spawn = NodePath("Spawn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1000
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2100.0
+offset_top = -1520.0
+offset_right = 900.0
+offset_bottom = 1480.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="OuterBorder" parent="." node_paths=PackedStringArray("collision_polygon", "path", "line") instance=ExtResource("2_hne8a")]
+collision_polygon = NodePath("CollisionPolygon2D")
+path = NodePath("Path2D")
+line = NodePath("Line2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OuterBorder"]
+build_mode = 1
+
+[node name="Path2D" type="Path2D" parent="OuterBorder"]
+curve = SubResource("Curve2D_jhe20")
+
+[node name="Line2D" type="Line2D" parent="OuterBorder"]
+
+[node name="InnerBorder" parent="." node_paths=PackedStringArray("collision_polygon", "path", "polygon") instance=ExtResource("2_hne8a")]
+collision_polygon = NodePath("CollisionPolygon2D")
+path = NodePath("Path2D")
+polygon = NodePath("Polygon2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="InnerBorder"]
+
+[node name="Polygon2D" type="Polygon2D" parent="InnerBorder"]
+
+[node name="Path2D" type="Path2D" parent="InnerBorder"]
+curve = SubResource("Curve2D_5ywlu")
+
+[node name="Spawn" type="Node2D" parent="."]
+position = Vector2(128, 176)
+rotation = -1.5708
+
+[node name="FinishLine" parent="." instance=ExtResource("3_w6y04")]
+position = Vector2(0, 250)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishLine"]
+shape = SubResource("RectangleShape2D_jhe20")
+
+[node name="Sprite2D" type="Sprite2D" parent="FinishLine"]
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("4_7o723")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 192)
+
+[node name="Node2D" type="Node2D" parent="FinishLine"]
+
+[node name="StartLine" parent="." instance=ExtResource("5_e87hg")]
+position = Vector2(-128, 250)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartLine"]
+shape = SubResource("RectangleShape2D_cejyx")
