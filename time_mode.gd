@@ -71,10 +71,14 @@ func start() -> void:
 
 func init(player_count: int) -> void:
 	for i in range(player_count):
-		print(i)
-		print(player_count)
 		var new_player: Player = player.instantiate()
 		players.add_child(new_player)
+		
+		if player_count > 1:
+			if i == 0:
+				new_player.set_ignored_keys({"W": 0, "A": 0, "S": 0, "D": 0})
+			elif i == 1:
+				new_player.set_ignored_keys({"Up": 0, "Down": 0, "Left": 0, "Right": 0})
 	
 	init_players()
 	track.spawn_players(players)

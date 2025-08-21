@@ -63,6 +63,7 @@ texture = ExtResource("2_hqtel")
 hframes = 2
 
 [node name="InputController" parent="." instance=ExtResource("1_4flbx")]
+controller_dead_zone = 0.2
 
 [node name="MoveController" parent="." node_paths=PackedStringArray("rigid_body") instance=ExtResource("2_onrkg")]
 rigid_body = NodePath("..")
