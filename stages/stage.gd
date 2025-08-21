@@ -1,10 +1,14 @@
 class_name Stage extends Node2D
 
 
+@onready var camera: Camera2D = $Camera2D
+
+
 @export var game_mode: TimeMode
 
 
 var players: int = 1
+var camera_zoom: float = 1
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -16,4 +20,5 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func init() -> void:
+	camera.zoom = Vector2.ONE * camera_zoom
 	game_mode.init(players)

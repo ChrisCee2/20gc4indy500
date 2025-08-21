@@ -9,7 +9,6 @@ script = ExtResource("1_yor2l")
 game_mode = NodePath("TimeMode")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.75, 0.75)
 
 [node name="Track1" parent="." instance=ExtResource("1_p6prp")]
 
