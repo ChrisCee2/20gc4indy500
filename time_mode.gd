@@ -66,7 +66,7 @@ func start() -> void:
 			object.disabled = false
 	
 	lap_label.show()
-	lap_label.text = lap_text % [1, laps]
+	update_lap_label()
 
 
 func init(player_count: int) -> void:
@@ -105,7 +105,7 @@ func on_lap(player: Player) -> void:
 	if player.laps_completed >= laps:
 		finish()
 	else:
-		lap_label.text = lap_text % [player.laps_completed + 1, laps]
+		update_lap_label()
 
 
 func get_formatted_time(ms: int) -> String:
@@ -114,3 +114,20 @@ func get_formatted_time(ms: int) -> String:
 	var milliseconds: int = int(ms % 1000)
 
 	return "%d:%02d.%03d" % [minutes, seconds, milliseconds]
+
+
+func update_lap_label() -> void:
+	var new_text: String = ""
+	var curr_player: int = 1
+	var all_players: Array = players.get_children()
+	for player in all_players:
+		if player is Player:
+			var player_lap_text: String = lap_text % [player.laps_completed + 1, laps]
+			if all_players.size() > 1:
+				new_text += "P%d " % curr_player + player_lap_text
+				if curr_player < all_players.size():
+					new_text += " | "
+			else:
+				new_text += player_lap_text
+			curr_player += 1
+	lap_label.text = new_text
