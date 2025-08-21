@@ -13,6 +13,9 @@ var input_map: Dictionary[String, float] = {
 }
 
 
+var keys_to_ignore: Dictionary[String, int] = {}
+
+
 func get_direction() -> Vector2:
 	var direction: Vector2 = Vector2(
 		input_map["right"] - input_map["left"],
@@ -34,6 +37,8 @@ func update_keyboard_input(event: InputEvent, device: int, keys: Dictionary) -> 
 	if keys.size() != 0:
 		if event is InputEventKey and !keys.get(event.as_text_keycode(), false):
 			return
+	if keys_to_ignore.has(event.as_text_keycode()):
+		return
 	for action in input_map:
 		if event.is_action(action):
 			if event.is_pressed():

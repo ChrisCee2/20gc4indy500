@@ -4,3 +4,4 @@
 
 [node name="InputController" type="Node"]
 script = ExtResource("1_6j56o")
+controller_dead_zone = null

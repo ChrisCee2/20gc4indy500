@@ -6,6 +6,7 @@ class_name TimeMode extends Node
 
 @export_group("Required Nodes")
 @export var players: Node
+@export var track: Track
 @export var start_timer_label: Label
 @export var track_time_label: Label
 @export var end_text_label: Label
@@ -22,21 +23,24 @@ var is_finished: bool = false
 var finish_time: int = 0
 var lap_text: String = "Lap: %d/%d"
 var end_text: String = "Press space to leave"
+var player = preload("res://player.tscn")
+
+
+func init_players() -> void:
+	for object in players.get_children():
+		if object is Player:
+			object.disabled = true
+			object.lapped.connect(on_lap.bind(object))
 
 
 func _ready() -> void:
 	start_timer.one_shot = true
 	start_timer.timeout.connect(start)
 	
-	for object in players.get_children():
-		if object is Player:
-			object.disabled = true
-			object.lapped.connect(on_lap.bind(object))
+	init_players()
 	
 	start_timer_label.hide()
 	end_text_label.hide()
-	
-	init()
 
 
 func _process(delta: float) -> void:
@@ -62,10 +66,22 @@ func start() -> void:
 			object.disabled = false
 	
 	lap_label.show()
-	lap_label.text = lap_text % [1, laps]
+	update_lap_label()
 
 
-func init() -> void:
+func init(player_count: int) -> void:
+	for i in range(player_count):
+		var new_player: Player = player.instantiate()
+		players.add_child(new_player)
+		
+		if player_count > 1:
+			if i == 0:
+				new_player.set_ignored_keys({"W": 0, "A": 0, "S": 0, "D": 0})
+			elif i == 1:
+				new_player.set_ignored_keys({"Up": 0, "Down": 0, "Left": 0, "Right": 0})
+	
+	init_players()
+	track.spawn_players(players)
 	is_starting = true
 	start_timer_label.show()
 	start_timer.start(time_to_start)
@@ -89,7 +105,7 @@ func on_lap(player: Player) -> void:
 	if player.laps_completed >= laps:
 		finish()
 	else:
-		lap_label.text = lap_text % [player.laps_completed + 1, laps]
+		update_lap_label()
 
 
 func get_formatted_time(ms: int) -> String:
@@ -98,3 +114,20 @@ func get_formatted_time(ms: int) -> String:
 	var milliseconds: int = int(ms % 1000)
 
 	return "%d:%02d.%03d" % [minutes, seconds, milliseconds]
+
+
+func update_lap_label() -> void:
+	var new_text: String = ""
+	var curr_player: int = 1
+	var all_players: Array = players.get_children()
+	for player in all_players:
+		if player is Player:
+			var player_lap_text: String = lap_text % [player.laps_completed + 1, laps]
+			if all_players.size() > 1:
+				new_text += "P%d " % curr_player + player_lap_text
+				if curr_player < all_players.size():
+					new_text += " | "
+			else:
+				new_text += player_lap_text
+			curr_player += 1
+	lap_label.text = new_text

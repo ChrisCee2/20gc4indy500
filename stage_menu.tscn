@@ -48,12 +48,28 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/v_separation = 40
 
+[node name="PlayerLabel" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Players:"
+
+[node name="HSlider" type="HSlider" parent="GridContainer"]
+layout_mode = 2
+min_value = 1.0
+max_value = 2.0
+value = 1.0
+tick_count = 2
+
+[node name="GridContainer" type="GridContainer" parent="GridContainer"]
+layout_mode = 2
+columns = 2
+
 [node name="StageOneButton" type="Button" parent="GridContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 63
+theme_override_font_sizes/font_size = 64
 theme_override_styles/focus = SubResource("StyleBoxEmpty_p3jrs")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_p3jrs")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_p3jrs")
@@ -72,7 +88,7 @@ texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 63
+theme_override_font_sizes/font_size = 64
 theme_override_styles/focus = SubResource("StyleBoxEmpty_p3jrs")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_p3jrs")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_p3jrs")

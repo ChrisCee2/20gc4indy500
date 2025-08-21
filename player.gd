@@ -54,3 +54,7 @@ func lap() -> void:
 func _process(delta: float) -> void:
 	var speed: float = maxf(linear_velocity.length(), angular_velocity) * animation_speed_scale
 	animation_player.speed_scale = minf(speed, max_animation_speed)
+
+
+func set_ignored_keys(keys: Dictionary[String, int]) -> void:
+	input_controller.keys_to_ignore = keys
