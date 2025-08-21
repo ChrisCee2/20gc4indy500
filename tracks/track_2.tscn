@@ -8,15 +8,15 @@
 
 [sub_resource type="Curve2D" id="Curve2D_jhe20"]
 _data = {
-"points": PackedVector2Array(-111.272, 147.874, 111.272, -147.874, 144, -151, 0, 0, 320, 0, 421, -304, 0, 0, 0, 0, 704, 0, 320, 0, 0, 0, 384, 320, 79.8876, 8.7846, -79.8876, -8.7846, -384, 320, 2.9282, 49.7794, -2.9282, -49.7794, -537, 253, 164.617, 14.641, -164.617, -14.641, -610, 70, -102.361, 86.4246, 102.361, -86.4246, -602, -255, 0, 0, 0, 0, -266, -290, -96.1837, -97.7499, 96.1837, 97.7499, -58, -149, 0, 0, 0, 0, 144, -151)
+"points": PackedVector2Array(-43.503, 31.3452, 43.503, -31.3452, 535, -473, -101.288, -45.179, 101.288, 45.179, 788, -467, 0, -119.178, 0, 119.178, 842, 13, 258.801, -20.9366, -258.801, 20.9366, 395, 327, 83.4307, -0.0732059, -83.4307, 0.0732059, -389, 344, 18.6502, 221.24, -18.6502, -221.24, -909, 197, 120.199, 51.3774, -120.199, -51.3774, -556, -51, -209.815, 209.21, 209.815, -209.21, -880, -380, 0, 0, 0, 0, -348, -417, -96.1837, -97.7499, 96.1837, 97.7499, -142, -258, -226.76, -15.9441, 226.76, 15.9441, -75, -503, -7.42658, -97.1561, 7.42658, 97.1561, 274, -294, 0, 0, 0, 0, 535, -473)
 }
-point_count = 11
+point_count = 13
 
 [sub_resource type="Curve2D" id="Curve2D_5ywlu"]
 _data = {
-"points": PackedVector2Array(-239.127, 320.222, 239.127, -320.222, 237, -60, 0, 0, 320, 0, 666.592, -368.218, 0, 0, 0, 0, 888.912, -50.022, 320, 0, 0, 0, 574.885, 268.174, 79.8876, 8.7846, -79.8876, -8.7846, -118.476, 223.71, 2.9282, 49.7794, -2.9282, -49.7794, -558.948, 177.856, 164.617, 14.641, -164.617, -14.641, -831.29, -58.359, -140.505, 25.8874, 140.505, -25.8874, -795.163, -380.723, 0, 0, 0, 0, -363.028, -177.856, -210.456, -122.292, 210.456, 122.292, -68.4538, 22.232, 0, 0, 0, 0, 237, -60)
+"points": PackedVector2Array(-89.5265, 89.2223, 89.5265, -89.2223, 386, -90, -95.6, 24.2, 95.6, -24.2, 596, -255, 0, 0, 0, 0, 641, -51, 154.804, -25.6303, -154.804, 25.6303, 442, 132, 79.8876, 8.7846, -79.8876, -8.7846, -147, 153, 10.3662, 72.9199, -10.3662, -72.9199, -522, 180, 138.044, 110.305, -138.044, -110.305, -202, -43, -140.505, 25.8874, 140.505, -25.8874, -625, -312, 0, 0, 0, 0, -218.265, -121, -94.9563, -18.892, 94.9563, 18.892, -4, -21, -46.0606, 124.009, 46.0606, -124.009, 58, -279, 0, 0, 0, 0, 193, -102, -139.15, 83.49, 139.15, -83.49, 386, -90)
 }
-point_count = 11
+point_count = 13
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhe20"]
 size = Vector2(128, 192)
@@ -44,7 +44,6 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="OuterBorder" parent="." node_paths=PackedStringArray("collision_polygon", "path", "line") instance=ExtResource("2_hne8a")]
-position = Vector2(100, 0)
 collision_polygon = NodePath("CollisionPolygon2D")
 path = NodePath("Path2D")
 line = NodePath("Line2D")
@@ -53,14 +52,11 @@ line = NodePath("Line2D")
 build_mode = 1
 
 [node name="Path2D" type="Path2D" parent="OuterBorder"]
-position = Vector2(-125.754, -57.7714)
-scale = Vector2(1.17838, 1.17838)
 curve = SubResource("Curve2D_jhe20")
 
 [node name="Line2D" type="Line2D" parent="OuterBorder"]
 
 [node name="InnerBorder" parent="." node_paths=PackedStringArray("collision_polygon", "path", "polygon") instance=ExtResource("2_hne8a")]
-position = Vector2(100, 0)
 collision_polygon = NodePath("CollisionPolygon2D")
 path = NodePath("Path2D")
 polygon = NodePath("Polygon2D")
@@ -70,8 +66,6 @@ polygon = NodePath("Polygon2D")
 [node name="Polygon2D" type="Polygon2D" parent="InnerBorder"]
 
 [node name="Path2D" type="Path2D" parent="InnerBorder"]
-position = Vector2(-102.735, 0)
-scale = Vector2(0.719683, 0.719683)
 curve = SubResource("Curve2D_5ywlu")
 
 [node name="Spawn" type="Node2D" parent="."]

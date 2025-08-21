@@ -1,33 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://exnt8cbqpt5a"]
+[gd_scene load_steps=3 format=3 uid="uid://exnt8cbqpt5a"]
 
-[ext_resource type="PackedScene" uid="uid://dg08mn46hx5f0" path="res://tracks/track_1.tscn" id="1_p6prp"]
-[ext_resource type="Script" uid="uid://bdndepia500gy" path="res://stages/stage.gd" id="1_yor2l"]
-[ext_resource type="PackedScene" uid="uid://cfe2qi0ae512k" path="res://time_mode.tscn" id="3_40wcd"]
+[ext_resource type="Script" uid="uid://bdndepia500gy" path="res://stages/stage.gd" id="1_qghdb"]
+[ext_resource type="PackedScene" uid="uid://cfe2qi0ae512k" path="res://time_mode.tscn" id="3_ar3c0"]
 
-[node name="Stage1" type="Node2D" node_paths=PackedStringArray("game_mode")]
-script = ExtResource("1_yor2l")
+[node name="Stage" type="Node2D" node_paths=PackedStringArray("game_mode")]
+script = ExtResource("1_qghdb")
 game_mode = NodePath("TimeMode")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Track1" parent="." instance=ExtResource("1_p6prp")]
-
 [node name="Players" type="Node" parent="."]
 
-[node name="TimeMode" parent="." node_paths=PackedStringArray("players", "track", "start_timer_label", "track_time_label", "end_text_label", "lap_label") instance=ExtResource("3_40wcd")]
+[node name="TimeMode" parent="." node_paths=PackedStringArray("players", "start_timer_label", "track_time_label", "end_text_label", "lap_label") instance=ExtResource("3_ar3c0")]
 players = NodePath("../Players")
-track = NodePath("../Track1")
-start_timer_label = NodePath("../Control/TimeLabel")
-track_time_label = NodePath("../Control/TimeLabel")
-end_text_label = NodePath("../Control2/HeaderLabel")
-lap_label = NodePath("../Control2/HeaderLabel")
+start_timer_label = NodePath("../TimeControl/TimeLabel")
+track_time_label = NodePath("../TimeControl/TimeLabel")
+end_text_label = NodePath("../HeaderControl/HeaderLabel")
+lap_label = NodePath("../HeaderControl/HeaderLabel")
 
-[node name="Control" type="Control" parent="."]
+[node name="TimeControl" type="Control" parent="."]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
 
-[node name="TimeLabel" type="Label" parent="Control"]
+[node name="TimeLabel" type="Label" parent="TimeControl"]
 z_index = 100
 layout_mode = 1
 anchors_preset = 8
@@ -48,7 +44,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control2" type="Control" parent="."]
+[node name="HeaderControl" type="Control" parent="."]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 5
@@ -58,7 +54,7 @@ offset_top = -372.0
 offset_bottom = -372.0
 grow_horizontal = 2
 
-[node name="HeaderLabel" type="Label" parent="Control2"]
+[node name="HeaderLabel" type="Label" parent="HeaderControl"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
