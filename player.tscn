@@ -97,4 +97,5 @@ initial_velocity_max = 80.0
 damping_min = 100.0
 damping_max = 120.0
 damping_curve = SubResource("Curve_sweqy")
+angle_max = 360.0
 scale_amount_min = 0.5
