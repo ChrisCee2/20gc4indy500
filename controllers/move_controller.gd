@@ -1,8 +1,8 @@
 class_name MoveController extends Node
 
 @export var rigid_body: RigidBody2D
-@export var max_acceleration: float = 0.8
-@export var torque: float = 5.0
+@export var max_acceleration: float = 0.6
+@export var torque: float = 3.0
 @export_range(0, 1) var acceleration_speed: float = 0.05 # How fast it accelerates, using lerp weirdly
 @export_range(0, 1) var deceleration_speed: float = 0.02
 
