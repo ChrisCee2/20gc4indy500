@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7w7th8hmqmmy"]
+[gd_scene load_steps=11 format=3 uid="uid://c7w7th8hmqmmy"]
 
 [ext_resource type="PackedScene" uid="uid://dhqthycfevgqo" path="res://controllers/input_controller.tscn" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dkijcxyh5de2g" path="res://player.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://dissuvs6jspv6" path="res://assets/dog.png" id="2_hqtel"]
 [ext_resource type="PackedScene" uid="uid://c8ucqao0nfxhn" path="res://controllers/move_controller.tscn" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://d10nh82at4vmt" path="res://assets/fart.png" id="5_sweqy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hqtel"]
 radius = 16.0
@@ -47,6 +48,11 @@ _data = {
 &"run": SubResource("Animation_hqtel")
 }
 
+[sub_resource type="Curve" id="Curve_sweqy"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0.00483092, 0), 0.0, 4.99626, 0, 0, Vector2(1, 0), -4.24719, 0.0, 0, 0]
+point_count = 2
+
 [node name="Player" type="RigidBody2D"]
 linear_damp_mode = 1
 linear_damp = 10.0
@@ -72,3 +78,23 @@ rigid_body = NodePath("..")
 libraries = {
 &"": SubResource("AnimationLibrary_2hs0m")
 }
+
+[node name="FartParticles" type="CPUParticles2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 22)
+emitting = false
+amount = 4
+texture = ExtResource("5_sweqy")
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+direction = Vector2(0, 1)
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 80.0
+damping_min = 100.0
+damping_max = 120.0
+damping_curve = SubResource("Curve_sweqy")
+scale_amount_min = 0.5
