@@ -69,7 +69,7 @@ polygon = NodePath("Polygon2D")
 curve = SubResource("Curve2D_5ywlu")
 
 [node name="Spawn" type="Node2D" parent="."]
-position = Vector2(128, 176)
+position = Vector2(128, 155.42)
 rotation = -1.5708
 
 [node name="FinishLine" parent="." instance=ExtResource("3_w6y04")]
