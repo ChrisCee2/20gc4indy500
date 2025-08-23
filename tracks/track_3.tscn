@@ -93,6 +93,7 @@ b = Vector2(-5, 109)
 script = ExtResource("1_2uduf")
 spawn = NodePath("Spawn")
 spawn_angle = 40.0
+player_spawn_angle = 220.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -1000
@@ -110,7 +111,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Spawn" type="Node2D" parent="."]
-position = Vector2(411.825, -44.345)
+position = Vector2(425, -84)
 
 [node name="Right1" parent="." node_paths=PackedStringArray("collision_polygon", "path", "line") instance=ExtResource("2_tsanx")]
 collision_layer = 5
@@ -181,6 +182,7 @@ build_mode = 1
 curve = SubResource("Curve2D_2fmj2")
 
 [node name="Line2D" type="Line2D" parent="Left4"]
+default_color = Color(1, 1, 1, 0)
 
 [node name="Left6" parent="." node_paths=PackedStringArray("collision_polygon", "path", "line") instance=ExtResource("2_tsanx")]
 collision_layer = 6
@@ -209,6 +211,7 @@ build_mode = 1
 curve = SubResource("Curve2D_ckjgs")
 
 [node name="Line2D" type="Line2D" parent="Left2"]
+default_color = Color(1, 1, 1, 0)
 
 [node name="Left5" parent="." node_paths=PackedStringArray("collision_polygon", "path", "line") instance=ExtResource("2_tsanx")]
 collision_layer = 6
@@ -286,3 +289,9 @@ shape = SubResource("SegmentShape2D_2fmj2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionToggler7"]
 shape = SubResource("SegmentShape2D_nsedx")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -345.0
+offset_top = 344.0
+offset_right = 321.0
+offset_bottom = 462.0
