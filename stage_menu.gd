@@ -15,7 +15,7 @@ var hover_sfx: AudioStream = preload("res://SFX/MainHoverSFX.wav")
 func _ready() -> void:
 	track_one_button.pressed.connect(start_stage.bind(
 		{
-			"camera_zoom": 0.75,
+			"camera_zoom": 0.5,
 			"timer_position": Vector2.ZERO,
 			"header_position": Vector2(0, -372.0),
 			"track_name": "track_1"
@@ -25,7 +25,7 @@ func _ready() -> void:
 	
 	track_two_button.pressed.connect(start_stage.bind(
 		{
-			"camera_zoom": 0.6,
+			"camera_zoom": 0.35,
 			"timer_position": Vector2(128, 30),
 			"header_position": Vector2(0, 450.0),
 			"track_name": "track_2"
@@ -35,9 +35,9 @@ func _ready() -> void:
 	
 	track_three_button.pressed.connect(start_stage.bind(
 		{
-			"camera_zoom": 0.6,
+			"camera_zoom": 0.35,
 			"timer_position": Vector2(0, 465),
-			"header_position": Vector2(0, -500.0),
+			"header_position": Vector2(0, -600.0),
 			"track_name": "track_3"
 		}
 	))

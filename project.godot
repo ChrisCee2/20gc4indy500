@@ -22,6 +22,9 @@ SceneHelper="*res://scene_helper.gd"
 
 [display]
 
+window/size/viewport_width=720
+window/size/viewport_height=480
+window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
 [input]
