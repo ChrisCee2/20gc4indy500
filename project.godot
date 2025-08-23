@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 AudioManager="*res://audio_manager.tscn"
 SceneHelper="*res://scene_helper.gd"
 
+[display]
+
+window/stretch/scale_mode="integer"
+
 [input]
 
 up={
