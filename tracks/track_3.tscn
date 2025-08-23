@@ -97,10 +97,10 @@ player_spawn_angle = 220.0
 
 [node name="ColorRect3" type="ColorRect" parent="."]
 z_index = 1
-offset_left = -50.0
-offset_top = -272.0
-offset_right = 239.0
-offset_bottom = -8.0
+offset_left = -65.0
+offset_top = -286.0
+offset_right = 254.0
+offset_bottom = -22.0
 rotation = 0.750492
 color = Color(0, 0, 0, 1)
 
