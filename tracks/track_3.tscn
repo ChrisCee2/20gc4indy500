@@ -97,6 +97,15 @@ spawn = NodePath("Spawn")
 spawn_angle = 40.0
 player_spawn_angle = 220.0
 
+[node name="ColorRect3" type="ColorRect" parent="."]
+z_index = 1
+offset_left = -27.0
+offset_top = -155.0
+offset_right = 158.0
+offset_bottom = 21.0
+rotation = 0.750492
+color = Color(0, 0, 0, 1)
+
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -1000
 anchors_preset = 8
@@ -115,10 +124,10 @@ color = Color(0, 0, 0, 1)
 [node name="Spawn" type="Node2D" parent="."]
 position = Vector2(425, -84)
 
-[node name="Right1" parent="." node_paths=PackedStringArray("collision_polygon", "path", "line") instance=ExtResource("2_tsanx")]
+[node name="Right1" parent="." node_paths=PackedStringArray("path", "line") instance=ExtResource("2_tsanx")]
+z_index = 3
 collision_layer = 5
 create_segment_shapes = true
-collision_polygon = NodePath("")
 path = NodePath("Path2D")
 line = NodePath("Line2D")
 
@@ -126,14 +135,15 @@ line = NodePath("Line2D")
 curve = SubResource("Curve2D_tsanx")
 
 [node name="Line2D" type="Line2D" parent="Right1"]
+z_index = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right1"]
 shape = SubResource("SegmentShape2D_w7xv1")
 
-[node name="Right2" parent="." node_paths=PackedStringArray("collision_polygon", "path", "line") instance=ExtResource("2_tsanx")]
+[node name="Right2" parent="." node_paths=PackedStringArray("path", "line") instance=ExtResource("2_tsanx")]
+z_index = 3
 collision_layer = 5
 create_segment_shapes = true
-collision_polygon = NodePath("")
 path = NodePath("Path2D")
 line = NodePath("Line2D")
 
@@ -141,11 +151,12 @@ line = NodePath("Line2D")
 curve = SubResource("Curve2D_l2gc0")
 
 [node name="Line2D" type="Line2D" parent="Right2"]
+z_index = 3
 
-[node name="Left1" parent="." node_paths=PackedStringArray("collision_polygon", "path", "line") instance=ExtResource("2_tsanx")]
+[node name="Left1" parent="." node_paths=PackedStringArray("path", "line") instance=ExtResource("2_tsanx")]
+z_index = 3
 collision_layer = 6
 create_segment_shapes = true
-collision_polygon = NodePath("")
 path = NodePath("Path2D")
 line = NodePath("Line2D")
 
@@ -154,10 +165,10 @@ curve = SubResource("Curve2D_5tug4")
 
 [node name="Line2D" type="Line2D" parent="Left1"]
 
-[node name="Left3" parent="." node_paths=PackedStringArray("collision_polygon", "path", "line") instance=ExtResource("2_tsanx")]
+[node name="Left3" parent="." node_paths=PackedStringArray("path", "line") instance=ExtResource("2_tsanx")]
+z_index = 3
 collision_layer = 6
 create_segment_shapes = true
-collision_polygon = NodePath("")
 path = NodePath("Path2D")
 line = NodePath("Line2D")
 
@@ -166,10 +177,10 @@ curve = SubResource("Curve2D_a6y52")
 
 [node name="Line2D" type="Line2D" parent="Left3"]
 
-[node name="Left4" parent="." node_paths=PackedStringArray("collision_polygon", "path", "line") instance=ExtResource("2_tsanx")]
+[node name="Left4" parent="." node_paths=PackedStringArray("path", "line") instance=ExtResource("2_tsanx")]
+z_index = 3
 collision_layer = 6
 create_segment_shapes = true
-collision_polygon = NodePath("")
 path = NodePath("Path2D")
 line = NodePath("Line2D")
 
@@ -179,10 +190,10 @@ curve = SubResource("Curve2D_2fmj2")
 [node name="Line2D" type="Line2D" parent="Left4"]
 default_color = Color(1, 1, 1, 0)
 
-[node name="Left6" parent="." node_paths=PackedStringArray("collision_polygon", "path", "line") instance=ExtResource("2_tsanx")]
+[node name="Left6" parent="." node_paths=PackedStringArray("path", "line") instance=ExtResource("2_tsanx")]
+z_index = 3
 collision_layer = 6
 create_segment_shapes = true
-collision_polygon = NodePath("")
 path = NodePath("Path2D")
 line = NodePath("Line2D")
 
@@ -191,10 +202,10 @@ curve = SubResource("Curve2D_nsedx")
 
 [node name="Line2D" type="Line2D" parent="Left6"]
 
-[node name="Left2" parent="." node_paths=PackedStringArray("collision_polygon", "path", "line") instance=ExtResource("2_tsanx")]
+[node name="Left2" parent="." node_paths=PackedStringArray("path", "line") instance=ExtResource("2_tsanx")]
+z_index = 3
 collision_layer = 6
 create_segment_shapes = true
-collision_polygon = NodePath("")
 path = NodePath("Path2D")
 line = NodePath("Line2D")
 
@@ -204,10 +215,10 @@ curve = SubResource("Curve2D_ckjgs")
 [node name="Line2D" type="Line2D" parent="Left2"]
 default_color = Color(1, 1, 1, 0)
 
-[node name="Left5" parent="." node_paths=PackedStringArray("collision_polygon", "path", "line") instance=ExtResource("2_tsanx")]
+[node name="Left5" parent="." node_paths=PackedStringArray("path", "line") instance=ExtResource("2_tsanx")]
+z_index = 3
 collision_layer = 6
 create_segment_shapes = true
-collision_polygon = NodePath("")
 path = NodePath("Path2D")
 line = NodePath("Line2D")
 
@@ -240,6 +251,8 @@ rotation = 2.33001
 shape = SubResource("RectangleShape2D_cejyx")
 
 [node name="CollisionToggler" parent="." instance=ExtResource("6_tsanx")]
+update_z_layer = true
+z_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionToggler"]
 shape = SubResource("SegmentShape2D_tsanx")
@@ -252,6 +265,7 @@ shape = SubResource("SegmentShape2D_6lu36")
 
 [node name="CollisionToggler3" parent="." instance=ExtResource("6_tsanx")]
 mask = 2
+update_z_layer = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionToggler3"]
 shape = SubResource("SegmentShape2D_l2gc0")
@@ -264,6 +278,7 @@ shape = SubResource("SegmentShape2D_5tug4")
 
 [node name="CollisionToggler5" parent="." instance=ExtResource("6_tsanx")]
 mask = 2
+update_z_layer = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionToggler5"]
 shape = SubResource("SegmentShape2D_a6y52")
@@ -275,6 +290,8 @@ mask = 3
 shape = SubResource("SegmentShape2D_2fmj2")
 
 [node name="CollisionToggler7" parent="." instance=ExtResource("6_tsanx")]
+update_z_layer = true
+z_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionToggler7"]
 shape = SubResource("SegmentShape2D_nsedx")
