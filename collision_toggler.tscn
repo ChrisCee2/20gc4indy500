@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddit5m5t7myfo"]
+
+[ext_resource type="Script" uid="uid://dgfjwyjgcv743" path="res://collision_toggler.gd" id="1_jrq11"]
+
+[node name="CollisionToggler" type="Area2D"]
+collision_layer = 7
+script = ExtResource("1_jrq11")
