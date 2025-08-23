@@ -39,7 +39,7 @@ func _ready() -> void:
 		{
 			"players": player_count_slider.value,
 			"camera_zoom": 0.6,
-			"timer_position": Vector2(0, 400),
+			"timer_position": Vector2(0, 465),
 			"header_position": Vector2(0, -500.0),
 			"track_name": "track_3"
 		}
